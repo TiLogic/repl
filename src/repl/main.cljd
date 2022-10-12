@@ -1,0 +1,7 @@
+(ns repl.main
+  (:require
+   [repl.scratch :as s]))
+
+(defn main
+  []
+  (s/run))
