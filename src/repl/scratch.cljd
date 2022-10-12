@@ -9,9 +9,8 @@
   (.-microsecond (DateTime/now)))
 
 (defmacro time1
-  "Evaluates expr and prints the time it took.  Returns the value of
- expr."
- [expr]
+  "Evaluates expr and prints the time it took. Returns the value of expr."
+  [expr]
   `(let [start# (.-microsecond (DateTime/now))
          ret# ~expr]
      (prn (str "Elapsed time: " (/ (- (.-microsecond (DateTime/now)) start#) 1000.0) " msecs"))
@@ -24,16 +23,26 @@
      (prn (str "Elapsed time: " (/ (- (ts-micro) start#) 1000.0) " msecs"))
      ret#))
 
+(defmacro time3
+  [expr]
+  `(let [sw# (Stopwatch)
+         _# (.start sw#)
+         ret# ~expr]
+     (prn (str "Elapsed time: " (/ (.-elapsedMicroseconds sw#) 1000.0) " msecs"))
+     ret#))
+
 (defn run []
   (time1 (DateTime/now))
   (time1 (DateTime/now))
-  (time1 (DateTime/now))
   (time2 (DateTime/now))
   (time2 (DateTime/now))
-  (time2 (DateTime/now))
-  (time2 (dotimes [_ 10000]
+  (time3 (DateTime/now))
+  (time3 (DateTime/now))
+  (time1 (dotimes [_ 10000]
            (DateTime/now)))
   (time2 (dotimes [_ 10000]
+           (DateTime/now)))
+  (time3 (dotimes [_ 10000]
            (DateTime/now)))
  ;;  
   )
