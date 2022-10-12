@@ -9,7 +9,9 @@
   (.-microsecond (DateTime/now)))
 
 (defmacro time1
-  [expr]
+  "Evaluates expr and prints the time it took.  Returns the value of
+ expr."
+ [expr]
   `(let [start# (.-microsecond (DateTime/now))
          ret# ~expr]
      (prn (str "Elapsed time: " (/ (- (.-microsecond (DateTime/now)) start#) 1000.0) " msecs"))
