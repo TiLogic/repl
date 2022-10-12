@@ -1,7 +1,4 @@
-(ns repl.scratch
-  (:require
-   ["dart:convert" :refer [jsonDecode jsonEncode]]
-   [repl.json :as j]))
+(ns repl.scratch)
 
 ;; (defn ^:macro-support ts-micro
 ;;   []
@@ -22,16 +19,20 @@
   [expr]
   `(let [start# (ts-micro)
          ret# ~expr]
-     (prn (str "Elapsed time: " (- (ts-micro) start#) " msecs"))
+     (prn (str "Elapsed time: " (/ (- (ts-micro) start#) 1000.0) " msecs"))
      ret#))
 
 (defn run []
   (time1 (DateTime/now))
   (time1 (DateTime/now))
   (time1 (DateTime/now))
-  (time2(DateTime/now))
-  (time2(DateTime/now))
-  (time2(DateTime/now))
+  (time2 (DateTime/now))
+  (time2 (DateTime/now))
+  (time2 (DateTime/now))
+  (time2 (dotimes [_ 10000]
+           (DateTime/now)))
+  (time2 (dotimes [_ 10000]
+           (DateTime/now)))
  ;;  
   )
 
